@@ -24,6 +24,7 @@ var src = {
   allFont: './src/**/*.{ttf,woff,otf,eot}',
   allScss: './src/**/*.scss',
   allImg: './src/**/*.{jpg,png,svg,gif,ico}'
+  allData: './src/**/*.data'
 };
 
 // The default task is what runs when you type 'gulp' in the terminal
@@ -58,11 +59,15 @@ gulp.task('watch', function () {
   watch(src.allScss, function () {
     gulp.start('scss');
   });
-  
+
+  watch(src.allScss, function () {
+    gulp.start('data');
+  });
+
   watch(src.allImg, function () {
     gulp.start('img');
   });
-  
+
   watch(src.allFont, function () {
     gulp.start('font');
   });
@@ -150,6 +155,12 @@ gulp.task('html', function () {
 // Move any images to the dist folder
 gulp.task('img', function () {
   return gulp.src(src.allImg)
+    .pipe(gulp.dest('./dist'));
+});
+
+// Move any images to the dist folder
+gulp.task('data', function () {
+  return gulp.src(src.allData)
     .pipe(gulp.dest('./dist'));
 });
 
